@@ -1,8 +1,10 @@
 import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
 import { Canvas, extend, useFrame, useThree } from "@react-three/fiber";
-import vertexShader from "./../vertexShader.glsl";
-import fragmentShader from "./../fragmentShader.glsl";
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import vertexShader from 'raw-loader!./../vertexShader.glsl';
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import fragmentShader from 'raw-loader!./../fragmentShader.glsl';
 
 // Load and extend with raw shader material
 extend({ RawShaderMaterial: THREE.RawShaderMaterial });
@@ -29,7 +31,7 @@ const FluidSimulation = (props) => {
 
   return (
     <mesh>
-      <planeBufferGeometry args={[2, 2]} />
+      <planeGeometry attach="geometry" args={[2, 2]} />
       <rawShaderMaterial
         ref={materialRef}
         vertexShader={vertexShader} // load from vertexShader.glsl
